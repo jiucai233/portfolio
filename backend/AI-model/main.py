@@ -26,11 +26,17 @@ rag = RAGConnector(api_key=api_key)
 @app.on_event("startup")
 async def startup_event():
     try:
-        # 这里挂载你的 PDF 路径或 URL
-        # 实际部署到 Railway 时，确保 PDF 文件已上传到代码仓库或指定目录
-        rag.add_source("..\portfolio-website\public\Yingjun Shen, AI engineer CV.pdf") 
-        # rag.add_source("https://glistening-cloche-173.notion.site/Jiucai-s-BLOG-22e5db4ddc1780daa138dce70b441d26")
-        print("RAG 数据挂载成功")
+        # 挂载本地 RAGsource 目录 (包含 PDF 和 Markdown 博客)
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        rag_source_dir = os.path.join(base_dir, "RAGsource")
+        
+        if os.path.exists(rag_source_dir):
+            print(f"Loading RAG sources from: {rag_source_dir}")
+            rag.add_source(rag_source_dir)
+            print("RAG 数据挂载成功")
+        else:
+            print(f"Warning: RAGsource directory not found at {rag_source_dir}")
+            
     except Exception as e:
         print(f"RAG 初始化失败: {e}")
 
