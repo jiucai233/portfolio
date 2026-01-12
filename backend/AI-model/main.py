@@ -5,12 +5,29 @@ from typing import List
 import uvicorn
 import google.generativeai as genai
 from dotenv import load_dotenv
-from rag import RAGConnector  # 确保你创建了上个回复中的这个文件
+from rag import RAGConnector  
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # 1. 基础配置
 load_dotenv()
 app = FastAPI(title="Portfolio AI Service", version="1.0.0")
-
+origins = [
+    "http://localhost:3000",             # 本地开发用
+    "https://www.jiucai.info",           # 你的正式域名
+    "https://portfolio-uwxm.vercel.app", # Vercel 分配的域名
+    "*"                                  # 允许所有来源 (如果上面不行就用这个)
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # 允许所有来源，防止 CORS 报错
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+@app.get("/")
+def read_root():
+    return {"status": "ok", "message": "My Portfolio API is running correctly!"}
 # 2. 初始化 Gemini 与 RAG 引擎
 api_key = os.getenv("GEMINI_API_KEY")
 genai.configure(api_key=api_key)
