@@ -2,7 +2,6 @@ import React from "react";
 import { LuGraduationCap } from "react-icons/lu";
 import YoloDetectionImg from "@/public/YoloDetection.jpg";
 import SochiWinterOlympicsImg from "@/public/SochiWinterOlympics.png";
-import GLCAIChatbotImg from "@/public/GLCAIChatbot.png";
 import SCOPEProjectImg from "@/public/SCOPEProject.jpg"
 export const links = [
   {

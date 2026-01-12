@@ -7,7 +7,7 @@ export async function POST(req: Request) {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
     console.log(`Connecting to Backend: ${apiUrl}/v1/chat`);
 
-    const response = await fetch('${apiUrl}/v1/chat', {
+    const response = await fetch(`${apiUrl}/v1/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages: body.messages }),
