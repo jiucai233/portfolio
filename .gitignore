@@ -1,0 +1,7 @@
+backend/.env
+./node_modules
+__pycache__/
+.venv
+*.log
+*.pyc
+GEMINI.md
