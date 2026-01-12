@@ -48,6 +48,7 @@
     "typescript": "5.1.5"
   },
   "devDependencies": {
+    "@types/react-resizable": "^3.0.8",
     "@types/react-syntax-highlighter": "^15.5.13",
     "@types/react-vertical-timeline-component": "^3.3.3"
   }
