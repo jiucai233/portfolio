@@ -23,7 +23,7 @@
     "clsx": "^1.2.1",
     "eslint": "8.43.0",
     "eslint-config-next": "13.4.7",
-    "framer-motion": "^10.12.17",
+    "framer-motion": "^12.25.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.471.0",
     "motion": "^11.17.0",
