@@ -1,10 +1,14 @@
 import React, { useRef, useEffect } from "react";
 import { Send } from "lucide-react";
 import ReactMarkdown from 'react-markdown';
-import { ResizableBox } from 'react-resizable';
+import dynamic from 'next/dynamic';
 import 'react-resizable/css/styles.css';
 import remarkGfm from 'remark-gfm';
 
+const ResizableBox = dynamic(
+  () => import('react-resizable').then((mod) => mod.ResizableBox),
+  { ssr: false } 
+);
 interface Message {
   role: "user" | "assistant";
   content: string;
