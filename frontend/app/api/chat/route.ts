@@ -4,7 +4,10 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const response = await fetch('http://localhost:8000/v1/chat', {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+    console.log(`Connecting to Backend: ${apiUrl}/v1/chat`);
+
+    const response = await fetch('${apiUrl}/v1/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ messages: body.messages }),
@@ -12,6 +15,7 @@ export async function POST(req: Request) {
 
     if (!response.ok) {
       const errorData = await response.json();
+      console.error("Render Backend Error:", errorData);
       return NextResponse.json({ error: errorData.detail }, { status: response.status });
     }
 
